@@ -34,6 +34,9 @@ public class MainActivity extends Activity {
                                 package2EditText.getText().toString()
                         ));
 
+                installIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                        Intent.ShortcutIconResource.fromContext(view.getContext(), R.drawable.logo));
+
                 view.getContext().sendBroadcast(installIntent);
             }
         });
