@@ -43,11 +43,13 @@ public class ShortcutActivity extends Activity {
 
         startActivities((intents); */
 
-        Intent primaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().getStringExtra("pkg1"));
+        Intent primaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().
+                getStringExtra("pkg1"));
         primaryIntent.setFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
         primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        Intent secondaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().getStringExtra("pkg2"));
+        Intent secondaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().
+                getStringExtra("pkg2"));
         secondaryIntent.setFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
         secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

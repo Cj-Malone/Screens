@@ -7,19 +7,33 @@
 
     <EditText
         android:id="@+id/package1EditText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text="org.secuso.privacyfriendlysudoku" />
 
+    <Button
+        android:id="@+id/quickPic1Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/package1EditText" />
+
     <EditText
         android:id="@+id/package2EditText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/package1EditText"
         android:text="naman14.timber" />
+
+    <Button
+        android:id="@+id/quickPic2Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quickPic1Button"
+        android:layout_toRightOf="@id/package2EditText" />
 
     <EditText
         android:id="@+id/nameEditText"
