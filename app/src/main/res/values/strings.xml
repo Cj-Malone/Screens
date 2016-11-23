@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Screen</string>
+    <string name="app_name">Screens</string>
     <string name="launch_splitscreen_notice">Please launch split screen mode</string>
     <string name="launch_splitscreen_howto">Long press the recents button</string>
     <string name="create_shortcut">Create Shortcut</string>

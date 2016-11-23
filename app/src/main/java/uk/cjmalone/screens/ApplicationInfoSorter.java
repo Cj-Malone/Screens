@@ -1,4 +1,4 @@
-package uk.cjmalone.screen;
+package uk.cjmalone.screens;
 
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;

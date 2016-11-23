@@ -1,11 +1,9 @@
-package uk.cjmalone.screen;
+package uk.cjmalone.screens;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import java.util.ArrayList;
 
 public class ShortcutActivity extends Activity {
 

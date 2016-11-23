@@ -1,4 +1,4 @@
-package uk.cjmalone.screen;
+package uk.cjmalone.screens;
 
 import android.app.Activity;
 import android.content.Intent;

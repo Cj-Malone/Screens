@@ -1,7 +1,6 @@
-package uk.cjmalone.screen;
+package uk.cjmalone.screens;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
