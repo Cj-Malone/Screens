@@ -9,11 +9,13 @@
         android:id="@+id/noticeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/launch_splitscreen_notice" />
+        android:text="@string/launch_splitscreen_notice"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/noticeTextView"
-        android:text="@string/launch_splitscreen_howto" />
+        android:text="@string/launch_splitscreen_howto"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 </RelativeLayout>
