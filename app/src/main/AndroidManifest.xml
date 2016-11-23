@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uk.cjmalone.screens">
+    package="uk.co.keepawayfromfire.screens">
 
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
 
@@ -9,21 +9,21 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <activity android:name="uk.cjmalone.screens.MainActivity">
+        <activity android:name="uk.co.keepawayfromfire.screens.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="uk.cjmalone.screens.ShortcutActivity">
+        <activity android:name="uk.co.keepawayfromfire.screens.ShortcutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.CREATE_SHORTCUT" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="uk.cjmalone.screens.PackagePickerActivity"></activity>
+        <activity android:name="uk.co.keepawayfromfire.screens.PackagePickerActivity"></activity>
     </application>
 
 </manifest>

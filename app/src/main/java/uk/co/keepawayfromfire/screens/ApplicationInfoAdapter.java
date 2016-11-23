@@ -1,4 +1,4 @@
-package uk.cjmalone.screens;
+package uk.co.keepawayfromfire.screens;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
