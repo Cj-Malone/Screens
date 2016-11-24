@@ -46,6 +46,12 @@ public class MainActivity extends Activity {
                         ));
 
                 view.getContext().sendBroadcast(installIntent);
+
+                Intent launcherIntent = new Intent();
+                launcherIntent.setAction(Intent.ACTION_MAIN);
+                launcherIntent.addCategory(Intent.CATEGORY_HOME);
+
+                startActivity(launcherIntent);
             }
         });
 
