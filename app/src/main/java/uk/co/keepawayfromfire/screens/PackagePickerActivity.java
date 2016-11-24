@@ -42,7 +42,7 @@ public class PackagePickerActivity extends ListActivity {
         Intent resultIntent = new Intent();
         resultIntent.putExtra("pkg", (ApplicationInfo) l.getItemAtPosition(position));
 
-        setResult(0, resultIntent);
+        setResult(RESULT_OK, resultIntent);
         finish();
     }
 }
