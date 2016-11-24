@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import java.util.Comparator;
 
 public class ApplicationInfoSorter implements Comparator<ApplicationInfo> {
+
     private final PackageManager packageManager;
 
     public ApplicationInfoSorter(PackageManager packageManager) {

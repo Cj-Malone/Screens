@@ -14,6 +14,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class PackagePickerActivity extends ListActivity {
+
+    public static final String INTENT_EXTRA_PACKAGE = "pkg";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,7 @@ public class PackagePickerActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
 
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("pkg", (ApplicationInfo) l.getItemAtPosition(position));
+        resultIntent.putExtra(INTENT_EXTRA_PACKAGE, (ApplicationInfo) l.getItemAtPosition(position));
 
         setResult(RESULT_OK, resultIntent);
         finish();

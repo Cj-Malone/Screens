@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    public static final String ACTION_INSTALL_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent installIntent = new Intent();
-                installIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+                installIntent.setAction(ACTION_INSTALL_SHORTCUT);
 
                 installIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME,
                         (String) nameEditText.getText().toString());
@@ -80,7 +82,7 @@ public class MainActivity extends Activity {
             return;
         }
 
-        ApplicationInfo applicationInfo = (ApplicationInfo) data.getParcelableExtra("pkg");
+        ApplicationInfo applicationInfo = (ApplicationInfo) data.getParcelableExtra(PackagePickerActivity.INTENT_EXTRA_PACKAGE);
 
         PackageManager packageManager = getPackageManager();
 

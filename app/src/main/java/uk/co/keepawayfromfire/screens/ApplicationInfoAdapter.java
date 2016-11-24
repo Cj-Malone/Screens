@@ -16,15 +16,10 @@ import java.util.ArrayList;
  * Created by cj on 19/11/16.
  */
 public class ApplicationInfoAdapter extends ArrayAdapter<ApplicationInfo> {
+
     private final Context context;
     private final PackageManager packageManager;
     private final ArrayList<ApplicationInfo> values;
-
-    static class ViewHolder {
-        public ImageView iconImageView;
-        public TextView nameTextView;
-        public TextView packageNameTextView;
-    }
 
     public ApplicationInfoAdapter(Context context, ArrayList<ApplicationInfo> values) {
         super(context, -1, values);
@@ -58,5 +53,11 @@ public class ApplicationInfoAdapter extends ArrayAdapter<ApplicationInfo> {
         viewHolder.packageNameTextView.setText(values.get(position).packageName);
 
         return packageView;
+    }
+
+    static class ViewHolder {
+        public ImageView iconImageView;
+        public TextView nameTextView;
+        public TextView packageNameTextView;
     }
 }
