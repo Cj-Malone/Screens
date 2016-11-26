@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="uk.co.keepawayfromfire.screens.MainActivity">
+
+    <fragment
+        android:id="@+id/pkg1"
+        class="uk.co.keepawayfromfire.screens.PackagePickerFragment"
+        android:layout_width="300dp"
+        android:layout_height="match_parent" />
+
+    <fragment
+        android:id="@+id/pkg2"
+        class="uk.co.keepawayfromfire.screens.PackagePickerFragment"
+        android:layout_width="300dp"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:minWidth="200dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_below="@+id/package2View"
+            android:text="Shortcut name" />
+
+        <Button
+            android:id="@+id/createShortcutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/nameEditText"
+            android:text="@string/create_shortcut" />
+    </LinearLayout>
+</LinearLayout>

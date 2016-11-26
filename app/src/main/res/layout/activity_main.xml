@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     tools:context="uk.co.keepawayfromfire.screens.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <include
         android:id="@+id/package1View"
         layout="@layout/package_view"

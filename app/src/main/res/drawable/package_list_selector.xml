@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- I don't have a clue how this file works-->
+    <item android:drawable="@drawable/package_list_item_selected" />
+</selector>
