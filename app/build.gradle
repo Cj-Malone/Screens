@@ -8,17 +8,12 @@ android {
         applicationId "uk.co.keepawayfromfire.screens"
         minSdkVersion 24
         targetSdkVersion 25
-        versionCode 1
-        versionName "1"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
+        versionCode 2
+        versionName "2"
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
 }
