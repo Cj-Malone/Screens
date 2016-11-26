@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Screens</string>
-    <string name="launch_splitscreen_notice">Please launch split screen mode</string>
-    <string name="launch_splitscreen_howto">Long press the recents button</string>
+    <string name="launch_splitscreen_notice">There is no way to automatically enter split screen mode.</string>
+    <string name="launch_splitscreen_howto">Please launch split screen mode by long press the recents button</string>
     <string name="create_shortcut">Create Shortcut</string>
+    <string name="default_shortcut_name">Shortcut name</string>
 </resources>

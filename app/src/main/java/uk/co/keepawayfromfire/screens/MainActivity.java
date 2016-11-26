@@ -126,8 +126,6 @@ public class MainActivity extends Activity {
 
         ApplicationInfo applicationInfo = (ApplicationInfo) data.getParcelableExtra(PackagePickerFragment.INTENT_EXTRA_PACKAGE);
 
-        Toast.makeText(this, applicationInfo.packageName, Toast.LENGTH_SHORT).show();
-
         if (requestCode == R.id.package1View) {
             package1 = applicationInfo;
         } else {
