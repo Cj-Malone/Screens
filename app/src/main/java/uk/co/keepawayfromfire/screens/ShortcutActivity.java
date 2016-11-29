@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.View;
+import android.widget.Button;
 
 public class ShortcutActivity extends Activity {
 
@@ -33,7 +36,21 @@ public class ShortcutActivity extends Activity {
         if (isInMultiWindowMode()) {
             thunderbirdsAreGo();
         } else {
+            startService(new Intent(this, SplitScreenService.class));
+
+            //Not in multi window mode and hasn't got accessibility enabled
             setContentView(R.layout.activity_shortcut);
+
+            Button accessibilityOptionsButton = (Button) findViewById(R.id.accessibilityOptionsButton);
+            accessibilityOptionsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent accessibilityIntent = new Intent();
+                    accessibilityIntent.setAction(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+
+                    startActivity(accessibilityIntent);
+                }
+            });
         }
     }
 

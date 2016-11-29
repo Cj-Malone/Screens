@@ -6,16 +6,16 @@
     tools:context="uk.co.keepawayfromfire.screens.ShortcutActivity">
 
     <TextView
-        android:id="@+id/noticeTextView"
+        android:id="@+id/howtoTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/launch_splitscreen_notice"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/noticeTextView"
         android:text="@string/launch_splitscreen_howto"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+    <Button
+        android:id="@+id/accessibilityOptionsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/howtoTextView"
+        android:text="@string/accessibility_options" />
 </RelativeLayout>
