@@ -8,8 +8,8 @@ android {
         applicationId "uk.co.keepawayfromfire.screens"
         minSdkVersion 24
         targetSdkVersion 25
-        versionCode 2
-        versionName "2"
+        versionCode 3
+        versionName "3"
     }
 }
 
