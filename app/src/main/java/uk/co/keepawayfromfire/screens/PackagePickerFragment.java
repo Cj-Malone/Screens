@@ -39,8 +39,11 @@ public class PackagePickerFragment extends ListFragment {
 
         Collections.sort(acceptablePackages, new ApplicationInfoSorter(packageManager));
 
-        if (savedInstanceState != null)
+        if (savedInstanceState != null) {
             selectedItem = savedInstanceState.getInt("selectedItem", 0);
+            getListView().setSelection(selectedItem);
+        }
+
         isTabletLayout = getActivity().findViewById(R.id.nameEditText) != null;
         if (isTabletLayout)
             getListView().setSelector(R.drawable.package_list_selector);
@@ -81,6 +84,6 @@ public class PackagePickerFragment extends ListFragment {
     }
 
     public interface AppInfoChangeListener {
-        public void onAppInfoChanged(ApplicationInfo applicationInfo);
+        void onAppInfoChanged(ApplicationInfo applicationInfo);
     }
 }
