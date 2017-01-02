@@ -1,6 +1,13 @@
 # Change Log
 
-# 3 - 2016011029
+# 4 - 2017-01-02
+### Added
+ - About screen
+
+### Changed
+ - Fixed screen rotation
+
+# 3 - 2016-11-29
 ### Added
  - Use accessibility service to enter split screen mode
 

@@ -8,7 +8,7 @@ android {
         applicationId "uk.co.keepawayfromfire.screens"
         minSdkVersion 24
         targetSdkVersion 25
-        versionCode 3
+        versionCode 4
         versionName versionCode.toString()
         resValue("string", "versionName", versionName)
         resValue("string", "version", "Version " + versionName)
