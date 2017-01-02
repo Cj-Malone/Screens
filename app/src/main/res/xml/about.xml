@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/app_name">
+        <Preference android:title="@string/versionName" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/links">
+        <Preference android:title="Keep Away From Fire">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://keepawayfromfire.co.uk/screens.html" />
+        </Preference>
+        <Preference android:title="@string/google_play">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://play.google.com/store/apps/details?id=uk.co.keepawayfromfire.screens" />
+        </Preference>
+        <!--<Preference android:title="F-Droid">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://f-droid.org/repository/browse/?fdid=uk.co.keepawayfromfire.screens" />
+        </Preference>-->
+        <Preference android:title="@string/github">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Cj-Malone/Screens" />
+        </Preference>
+    </PreferenceCategory>
+    <!--<PreferenceCategory android:title="Translators">
+            <Preference android:title="GitHub" />
+            <Preference android:title="Google Play" />
+        </PreferenceCategory>-->
+    <!--<PreferenceCategory android:title="Developers">
+        <Preference android:title="Cj Malone">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/Cj-Malone" />
+        </Preference>
+    </PreferenceCategory>-->
+</PreferenceScreen>
