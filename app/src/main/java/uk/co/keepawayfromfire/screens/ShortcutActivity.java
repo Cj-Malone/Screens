@@ -36,9 +36,6 @@ public class ShortcutActivity extends Activity {
         if (isInMultiWindowMode()) {
             thunderbirdsAreGo();
         } else {
-            startService(new Intent(this, SplitScreenService.class));
-
-            //Not in multi window mode and hasn't got accessibility enabled
             setContentView(R.layout.activity_shortcut);
 
             Button accessibilityOptionsButton = (Button) findViewById(R.id.accessibilityOptionsButton);
@@ -52,6 +49,14 @@ public class ShortcutActivity extends Activity {
                 }
             });
         }
+    }
+
+    @Override
+    protected void onResume() {
+        if(!isInMultiWindowMode())
+            startService(new Intent(this, SplitScreenService.class));
+
+        super.onResume();
     }
 
     public void thunderbirdsAreGo() {
