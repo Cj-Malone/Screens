@@ -33,6 +33,7 @@ public class PackagePickerFragment extends ListFragment {
 
         for (PackageInfo packageInfo : allPackages) {
             if (packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
+                // Only add packages that would show up in the launcher
                 acceptablePackages.add(packageInfo.applicationInfo);
             }
         }
@@ -46,6 +47,7 @@ public class PackagePickerFragment extends ListFragment {
 
         isTabletLayout = getActivity().findViewById(R.id.nameEditText) != null;
         if (isTabletLayout)
+            // By default it appears to have no selector?
             getListView().setSelector(R.drawable.package_list_selector);
 
         setListAdapter(new ApplicationInfoAdapter(this.getContext(), acceptablePackages));
@@ -64,6 +66,8 @@ public class PackagePickerFragment extends ListFragment {
             if (listener != null)
                 listener.onAppInfoChanged(applicationInfo);
         } else {
+            // Maybe I should just use the listener here as well,
+            // but currently starting for result when it's an activity
             Intent resultIntent = new Intent();
             resultIntent.putExtra(INTENT_EXTRA_PACKAGE, applicationInfo);
 

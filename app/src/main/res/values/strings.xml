@@ -9,4 +9,5 @@
     <string name="links">Links</string>
     <string name="google_play">Google Play</string>
     <string name="github">GitHub</string>
+    <string name="select_packages">Please select two packages</string>
 </resources>

@@ -55,34 +55,14 @@ public class ShortcutActivity extends Activity {
     protected void onResume() {
         if(!isInMultiWindowMode())
             startService(new Intent(this, SplitScreenService.class));
+            // This should trigger the activity being re created and this time
+            // onCreate should do thunderbirdsAreGo
+            // should should should.
 
         super.onResume();
     }
 
     public void thunderbirdsAreGo() {
-        //Seems to be an issue with passing arrays?
-
-        /* if (!getIntent().hasExtra("pkg")) {
-            Toast.makeText(this, "No Packages", Toast.LENGTH_LONG).show();
-            finish();
-            return;
-        }
-
-        Intent[] intents = new Intent[getIntent().getStringArrayListExtra("pkg").size()];
-        int i = 0;
-
-        for (String pkg : getIntent().getStringArrayListExtra("pkg")) {
-            Intent intent = getPackageManager().getLaunchIntentForPackage(pkg);
-
-            intent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            intents[i] = intent;
-            i++;
-        }
-
-        startActivities((intents); */
-
         Intent primaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().
                 getStringExtra(INTENT_EXTRA_PACKAGE_1));
         primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);

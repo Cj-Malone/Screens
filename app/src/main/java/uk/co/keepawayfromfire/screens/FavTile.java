@@ -17,7 +17,7 @@ public class FavTile extends TileService {
             return;
 
         //No way of checking split screen status in a service, so toggling is unreliable
-        //startService(new Intent(this, SplitScreenService.class));
+        //startService(new Intent(this, SplitScreenService.class)); //Toggle splitscreen
 
         Intent primaryIntent = getPackageManager().getLaunchIntentForPackage("com.android.contacts");
         primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);

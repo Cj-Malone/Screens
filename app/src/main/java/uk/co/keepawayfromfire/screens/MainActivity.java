@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
                     updateUi();
                 }
             });
-        } else {
+        } else { //"phone"
             final Button quickPic1Button = (Button) findViewById(R.id.quickPic1Button);
             final Button quickPic2Button = (Button) findViewById(R.id.quickPic2Button);
 
@@ -87,7 +87,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (package1 == null || package2 == null) {
-                    Toast.makeText(view.getContext(), "Please select two packages", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), R.string.select_packages, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -107,6 +107,7 @@ public class MainActivity extends Activity {
 
                 view.getContext().sendBroadcast(installIntent);
 
+                // Go home
                 Intent launcherIntent = new Intent();
                 launcherIntent.setAction(Intent.ACTION_MAIN);
                 launcherIntent.addCategory(Intent.CATEGORY_HOME);
@@ -142,7 +143,8 @@ public class MainActivity extends Activity {
             return;
         }
 
-        ApplicationInfo applicationInfo = (ApplicationInfo) data.getParcelableExtra(PackagePickerFragment.INTENT_EXTRA_PACKAGE);
+        ApplicationInfo applicationInfo = data.getParcelableExtra(
+                PackagePickerFragment.INTENT_EXTRA_PACKAGE);
 
         if (requestCode == R.id.package1View) {
             package1 = applicationInfo;
