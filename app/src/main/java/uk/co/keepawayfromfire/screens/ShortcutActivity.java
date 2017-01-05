@@ -74,7 +74,8 @@ public class ShortcutActivity extends Activity {
         for (String pkg : getIntent().getStringArrayListExtra("pkg")) {
             Intent intent = getPackageManager().getLaunchIntentForPackage(pkg);
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             intents[i] = intent;
             i++;
@@ -84,12 +85,12 @@ public class ShortcutActivity extends Activity {
 
         Intent primaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().
                 getStringExtra(INTENT_EXTRA_PACKAGE_1));
-        primaryIntent.setFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
+        primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
         primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         Intent secondaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().
                 getStringExtra(INTENT_EXTRA_PACKAGE_2));
-        secondaryIntent.setFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
+        secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
         secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         startActivities(new Intent[]{primaryIntent, secondaryIntent});
