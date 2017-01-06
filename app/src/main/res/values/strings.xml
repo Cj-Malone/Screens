@@ -11,4 +11,5 @@
     <string name="google_play">Google Play</string>
     <string name="github">GitHub</string>
     <string name="select_packages">Please select two apps</string>
+    <string name="quicksettings_added">%s added to Quick Settings</string>
 </resources>

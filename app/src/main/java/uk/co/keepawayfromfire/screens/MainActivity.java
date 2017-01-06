@@ -143,6 +143,10 @@ public class MainActivity extends Activity {
                 pm.setComponentEnabledSetting(new ComponentName(view.getContext(), FavTile.class),
                         PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                         PackageManager.DONT_KILL_APP);
+
+                Toast.makeText(view.getContext(),
+                        String.format(getString(R.string.quicksettings_added),
+                                nameEditText.getText().toString()), Toast.LENGTH_SHORT).show();
             }
         });
 
