@@ -68,7 +68,7 @@ public class ShortcutActivity extends Activity {
         secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
         secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        startActivities(new Intent[]{primaryIntent, secondaryIntent});
+        startActivities(new Intent[]{secondaryIntent, primaryIntent});
         finish();
     }
 }
