@@ -1,5 +1,9 @@
 # Change Log
 
+# 5
+### Added
+ - Ability to set a favourite shortcut as a quick tile
+
 # 4 - 2017-01-02
 ### Added
  - About screen

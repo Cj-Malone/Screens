@@ -1,6 +1,7 @@
 package uk.co.keepawayfromfire.screens;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.service.quicksettings.TileService;
 
 /**
@@ -16,17 +17,13 @@ public class FavTile extends TileService {
         if (isLocked())
             return;
 
-        //No way of checking split screen status in a service, so toggling is unreliable
-        //startService(new Intent(this, SplitScreenService.class)); //Toggle splitscreen
+        SharedPreferences prefs = getSharedPreferences("prefs_tile", MODE_PRIVATE);
+        String pkg1 = prefs.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, null);
+        String pkg2 = prefs.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, null);
 
-        Intent primaryIntent = getPackageManager().getLaunchIntentForPackage("com.android.contacts");
-        primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
-        primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        Intent secondaryIntent = getPackageManager().getLaunchIntentForPackage("com.android.calculator2");
-        secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
-        secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        startActivities(new Intent[]{primaryIntent, secondaryIntent});
+        if (pkg1 == null || pkg2 == null || pkg1.isEmpty() || pkg2.isEmpty())
+            startActivity(new Intent(this, MainActivity.class));
+        else
+            startActivity(ShortcutActivity.createShortcutIntent(this, pkg1, pkg2));
     }
 }

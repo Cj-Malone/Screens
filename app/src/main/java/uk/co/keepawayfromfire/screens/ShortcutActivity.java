@@ -14,17 +14,12 @@ public class ShortcutActivity extends Activity {
     public static final String INTENT_EXTRA_PACKAGE_2 = "pkg2";
 
     public static Intent createShortcutIntent(Context context, String package1, String package2) {
-        Intent shortcutIntent = new Intent();
-        shortcutIntent.setClass(context, ShortcutActivity.class);
+        Intent shortcutIntent = new Intent(context, ShortcutActivity.class);
 
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 
         shortcutIntent.putExtra(INTENT_EXTRA_PACKAGE_1, package1);
         shortcutIntent.putExtra(INTENT_EXTRA_PACKAGE_2, package2);
-
-        /* shortcutIntent.putExtra("pkg", new String[]{
-                        package1,
-                        package2}); */
 
         return shortcutIntent;
     }
@@ -53,11 +48,11 @@ public class ShortcutActivity extends Activity {
 
     @Override
     protected void onResume() {
-        if(!isInMultiWindowMode())
-            startService(new Intent(this, SplitScreenService.class));
+        if (!isInMultiWindowMode())
             // This should trigger the activity being re created and this time
             // onCreate should do thunderbirdsAreGo
             // should should should.
+            startService(new Intent(this, SplitScreenService.class));
 
         super.onResume();
     }

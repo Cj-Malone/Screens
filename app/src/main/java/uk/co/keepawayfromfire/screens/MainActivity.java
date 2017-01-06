@@ -2,7 +2,9 @@ package uk.co.keepawayfromfire.screens;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -18,7 +20,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    public static final String ACTION_INSTALL_SHORTCUT = "com.android.launcher.action.INSTALL_SHORTCUT";
+    public static final String ACTION_INSTALL_SHORTCUT
+            = "com.android.launcher.action.INSTALL_SHORTCUT";
 
     private boolean isTabletLayout;
 
@@ -40,8 +43,10 @@ public class MainActivity extends Activity {
 
         if (isTabletLayout) {
             FragmentManager fragmentManager = getFragmentManager();
-            final PackagePickerFragment a = (PackagePickerFragment) fragmentManager.findFragmentById(R.id.pkg1);
-            final PackagePickerFragment b = (PackagePickerFragment) fragmentManager.findFragmentById(R.id.pkg2);
+            final PackagePickerFragment a = (PackagePickerFragment) fragmentManager
+                    .findFragmentById(R.id.pkg1);
+            final PackagePickerFragment b = (PackagePickerFragment) fragmentManager
+                    .findFragmentById(R.id.pkg2);
 
             a.setApplicationInfoLisener(new PackagePickerFragment.AppInfoChangeListener() {
                 @Override
@@ -82,12 +87,14 @@ public class MainActivity extends Activity {
 
         final EditText nameEditText = (EditText) findViewById(R.id.nameEditText);
         final Button createShortcutButton = (Button) findViewById(R.id.createShortcutButton);
+        final Button setFavButton = (Button) findViewById(R.id.setFavourite);
 
         createShortcutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (package1 == null || package2 == null) {
-                    Toast.makeText(view.getContext(), R.string.select_packages, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), R.string.select_packages, Toast.LENGTH_SHORT)
+                            .show();
                     return;
                 }
 
@@ -113,6 +120,29 @@ public class MainActivity extends Activity {
                 launcherIntent.addCategory(Intent.CATEGORY_HOME);
 
                 startActivity(launcherIntent);
+            }
+        });
+
+        setFavButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (package1 == null || package2 == null) {
+                    Toast.makeText(view.getContext(), R.string.select_packages, Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+
+                SharedPreferences.Editor prefs = getSharedPreferences("prefs_tile", MODE_PRIVATE)
+                        .edit();
+                prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
+                prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
+                prefs.apply();
+
+                // Enable the tile
+                PackageManager pm = getPackageManager();
+                pm.setComponentEnabledSetting(new ComponentName(view.getContext(), FavTile.class),
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                        PackageManager.DONT_KILL_APP);
             }
         });
 

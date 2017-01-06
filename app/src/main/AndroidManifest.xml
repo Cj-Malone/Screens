@@ -48,7 +48,7 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibilityservice" />
         </service>
-        <!--<service
+        <service
             android:name=".FavTile"
             android:enabled="false"
             android:icon="@drawable/logo"
@@ -57,6 +57,6 @@
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
-        </service>-->
+        </service>
     </application>
 </manifest>
