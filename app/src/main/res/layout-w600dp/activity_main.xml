@@ -35,6 +35,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_below="@+id/package2View"
+            android:singleLine="true"
             android:text="@string/default_shortcut_name" />
 
         <Button
