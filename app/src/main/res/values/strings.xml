@@ -12,4 +12,5 @@
     <string name="github">GitHub</string>
     <string name="select_packages">Please select two apps</string>
     <string name="quicksettings_added">%s added to Quick Settings</string>
+    <string name="save">Save</string>
 </resources>

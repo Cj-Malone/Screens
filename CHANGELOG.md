@@ -3,6 +3,7 @@
 # 5
 ### Added
  - Ability to set a favourite shortcut as a quick tile
+ - Tasker(Locale) plugin
 
 # 4 - 2017-01-02
 ### Added
@@ -26,3 +27,4 @@
  - Explicitly use Light.DarkActionBar theme
 
 ## 1 - 2016-11-24
+)

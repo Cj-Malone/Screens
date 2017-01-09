@@ -18,12 +18,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import uk.co.keepawayfromfire.screens.tasker.Consts;
+
 public class MainActivity extends Activity {
 
     public static final String ACTION_INSTALL_SHORTCUT
             = "com.android.launcher.action.INSTALL_SHORTCUT";
 
     private boolean isTabletLayout;
+    private boolean isPlugin;
 
     private ApplicationInfo package1;
     private ApplicationInfo package2;
@@ -33,12 +36,25 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        isPlugin = getIntent().getAction().
+                equals(Consts.ACTION_EDIT_SETTING);
         isTabletLayout = findViewById(R.id.quickPic1Button) == null;
 
         if (savedInstanceState != null) {
             package1 = savedInstanceState.getParcelable("package1");
             package2 = savedInstanceState.getParcelable("package2");
-            updateUi();
+        }
+
+        Bundle taskerBundle = getIntent().getBundleExtra(Consts.EXTRA_BUNDLE);
+        if (taskerBundle != null) {
+            PackageManager pm = getPackageManager();
+            try {
+                package1 = pm.getApplicationInfo(taskerBundle.getString(
+                        ShortcutActivity.INTENT_EXTRA_PACKAGE_1), 0);
+                package2 = pm.getApplicationInfo(taskerBundle.getString(
+                        ShortcutActivity.INTENT_EXTRA_PACKAGE_2), 0);
+            } catch (PackageManager.NameNotFoundException ex) {
+            }
         }
 
         if (isTabletLayout) {
@@ -88,6 +104,14 @@ public class MainActivity extends Activity {
         final EditText nameEditText = (EditText) findViewById(R.id.nameEditText);
         final Button createShortcutButton = (Button) findViewById(R.id.createShortcutButton);
         final Button setFavButton = (Button) findViewById(R.id.setFavourite);
+        final Button saveButton = (Button) findViewById(R.id.saveButton);
+
+        if (isPlugin) {
+            nameEditText.setVisibility(View.GONE);
+            createShortcutButton.setVisibility(View.GONE);
+            setFavButton.setVisibility(View.GONE);
+            saveButton.setVisibility(View.VISIBLE);
+        }
 
         createShortcutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +171,27 @@ public class MainActivity extends Activity {
                 Toast.makeText(view.getContext(),
                         String.format(getString(R.string.quicksettings_added),
                                 nameEditText.getText().toString()), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (package1 == null || package2 == null) {
+                    Toast.makeText(view.getContext(), R.string.select_packages, Toast.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
+
+                Bundle bundle = new Bundle();
+                bundle.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
+                bundle.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
+
+                Intent intent = new Intent();
+                intent.putExtra(Consts.EXTRA_BUNDLE, bundle);
+
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
 

@@ -53,5 +53,15 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/nameEditText"
             android:text="@string/create_tile" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_below="@+id/package2View"
+            android:text="@string/save"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>
