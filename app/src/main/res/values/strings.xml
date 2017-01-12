@@ -2,7 +2,7 @@
     <string name="app_name">Screens</string>
     <string name="launch_splitscreen_howto">Please launch split screen mode by long pressing the recents button, or enable Screens in the accessibility options.</string>
     <string name="create_shortcut">Create Shortcut</string>
-    <string name="create_tile">Set Favourite</string>
+    <string name="create_tile">Set Favorite</string>
     <string name="default_shortcut_name">Shortcut name</string>
     <string name="accessibility_options">Accessibility Options</string>
     <string name="accessibility_explanation">The is required to automatically enter multi window mode.</string>
