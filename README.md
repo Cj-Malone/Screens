@@ -1,3 +1,8 @@
+<a href="https://f-droid.org/repository/browse/?fdid=uk.co.keepawayfromfire.screens" target="_blank">
+<img src="https://f-droid.org/badge/get-it-on.png" height="80"/></a>
+<a href="https://play.google.com/store/apps/details?id=uk.co.keepawayfromfire.screens" target="_blank">
+<img src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="80"/></a>
+
 # Screens
 
 Screens is an Android&trade; utility that allows you to quickly enter splitscreen mode with pre selected apps. It creates shortcuts that can be opened from any launcher. This might be good for productivity or having [SeriesGuide](https://seriesgui.de/) and [Kore](https://github.com/xbmc/Kore) at the same time.
