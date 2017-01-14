@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Screens</string>
+    <string name="launch_splitscreen_howto">最近使ったアプリボタンを長押して分割画面モードを開始するか、アクセシビリティオプションで Screens を有効にしてください。</string>
+    <string name="create_shortcut">ショートカットを作成</string>
+    <string name="create_tile">お気に入りの設定</string>
+    <string name="default_shortcut_name">ショートカット名</string>
+    <string name="accessibility_options">アクセシビリティ オプション</string>
+    <string name="accessibility_explanation">自動的にマルチウインドウモードに入るために必要です。</string>
+    <string name="title_activity_about">アプリについて</string>
+    <string name="links">リンク</string>
+    <string name="google_play">Google Play</string>
+    <string name="github">GitHub</string>
+    <string name="select_packages">アプリを 2 つ選んでください</string>
+    <string name="quicksettings_added">%s クイック設定に追加しました</string>
+    <string name="save">保存</string>
+</resources>
