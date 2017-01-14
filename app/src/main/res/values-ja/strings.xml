@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Screens</string>
     <string name="launch_splitscreen_howto">最近使ったアプリボタンを長押して分割画面モードを開始するか、アクセシビリティオプションで Screens を有効にしてください。</string>

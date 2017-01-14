@@ -1,5 +1,8 @@
 # Change Log
 
+### Added
+ - Japanese translation
+
 # 5 - 2017-01-09
 ### Added
  - Ability to set a favourite shortcut as a quick tile
