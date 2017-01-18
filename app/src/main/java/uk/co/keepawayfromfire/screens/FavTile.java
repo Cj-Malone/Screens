@@ -24,6 +24,6 @@ public class FavTile extends TileService {
         if (pkg1 == null || pkg2 == null || pkg1.isEmpty() || pkg2.isEmpty())
             startActivity(new Intent(this, MainActivity.class));
         else
-            startActivity(ShortcutActivity.createShortcutIntent(this, pkg1, pkg2));
+            startActivityAndCollapse(ShortcutActivity.createShortcutIntent(this, pkg1, pkg2));
     }
 }
