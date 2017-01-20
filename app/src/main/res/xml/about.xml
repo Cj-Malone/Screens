@@ -14,21 +14,24 @@
                 android:action="android.intent.action.VIEW"
                 android:data="https://play.google.com/store/apps/details?id=uk.co.keepawayfromfire.screens" />
         </Preference>
-        <!--<Preference android:title="F-Droid">
+        <Preference android:title="@string/fdroid">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://f-droid.org/repository/browse/?fdid=uk.co.keepawayfromfire.screens" />
-        </Preference>-->
+        </Preference>
         <Preference android:title="@string/github">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/Cj-Malone/Screens" />
         </Preference>
     </PreferenceCategory>
-    <!--<PreferenceCategory android:title="Translators">
-            <Preference android:title="GitHub" />
-            <Preference android:title="Google Play" />
-        </PreferenceCategory>-->
+    <PreferenceCategory android:title="@string/translators">
+        <Preference android:title="naofum - Japanese">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/naofum" />
+        </Preference>
+    </PreferenceCategory>
     <!--<PreferenceCategory android:title="Developers">
         <Preference android:title="Cj Malone">
             <intent

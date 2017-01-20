@@ -9,12 +9,14 @@
     <string name="accessibility_explanation">The is required to automatically enter multi window mode.</string>
     <string name="title_activity_about">About</string>
     <string name="links">Links</string>
-    <string name="google_play">Google Play</string>
-    <string name="github">GitHub</string>
+    <string name="google_play" translatable="false">Google Play</string>
+    <string name="fdroid" translatable="false">F-Droid</string>
+    <string name="github" translatable="false">GitHub</string>
     <string name="select_packages">Please select two apps</string>
     <string name="quicksettings_added">%s added to Quick Settings</string>
     <string name="save">Save</string>
     <string name="store_title">Screens - Multi Window Manager</string>
     <string name="store_summary">Manage split screen sessions</string>
     <string name="store_description">Screens allows you to quickly enter split screen mode from launcher shortcuts and a Quick Settings tile.</string>
+    <string name="translators">Translators</string>
 </resources>
