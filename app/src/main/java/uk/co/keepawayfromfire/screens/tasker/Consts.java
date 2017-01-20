@@ -5,6 +5,8 @@ package uk.co.keepawayfromfire.screens.tasker;
  */
 
 public class Consts {
+
     public static final String ACTION_EDIT_SETTING
             = "com.twofortyfouram.locale.intent.action.EDIT_SETTING";
-    public static final String EXTRA_BUNDLE = "com.twofortyfouram.locale.intent.extra.BUNDLE";}
+    public static final String EXTRA_BUNDLE = "com.twofortyfouram.locale.intent.extra.BUNDLE";
+}

@@ -13,6 +13,9 @@ public class ShortcutActivity extends Activity {
     public static final String INTENT_EXTRA_PACKAGE_1 = "pkg1";
     public static final String INTENT_EXTRA_PACKAGE_2 = "pkg2";
 
+    public static final String INTENT_EXTRA_1 = "intent1";
+    public static final String INTENT_EXTRA_2 = "intent2";
+
     public static Intent createShortcutIntent(Context context, String package1, String package2) {
         Intent shortcutIntent = new Intent(context, ShortcutActivity.class);
 
@@ -20,6 +23,17 @@ public class ShortcutActivity extends Activity {
 
         shortcutIntent.putExtra(INTENT_EXTRA_PACKAGE_1, package1);
         shortcutIntent.putExtra(INTENT_EXTRA_PACKAGE_2, package2);
+
+        return shortcutIntent;
+    }
+
+    public static Intent createShortcutIntent(Context context, Intent intent1, Intent intent2) {
+        Intent shortcutIntent = new Intent(context, ShortcutActivity.class);
+
+        shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+
+        shortcutIntent.putExtra(INTENT_EXTRA_1, intent1);
+        shortcutIntent.putExtra(INTENT_EXTRA_2, intent2);
 
         return shortcutIntent;
     }
@@ -58,15 +72,24 @@ public class ShortcutActivity extends Activity {
     }
 
     public void thunderbirdsAreGo() {
-        Intent primaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().
-                getStringExtra(INTENT_EXTRA_PACKAGE_1));
-        primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
-        primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent primaryIntent;
+        Intent secondaryIntent;
 
-        Intent secondaryIntent = getPackageManager().getLaunchIntentForPackage(getIntent().
-                getStringExtra(INTENT_EXTRA_PACKAGE_2));
-        secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
-        secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        String pkg1 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_1);
+        String pkg2 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_1);
+
+        if (pkg1 == null || pkg2 == null || pkg1.isEmpty() || pkg2.isEmpty()) {
+            primaryIntent = getPackageManager().getLaunchIntentForPackage(pkg1);
+            primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
+            primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            secondaryIntent = getPackageManager().getLaunchIntentForPackage(pkg2);
+            secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
+            secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } else {
+            primaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
+            secondaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
+        }
 
         startActivities(new Intent[]{secondaryIntent, primaryIntent});
         finish();
