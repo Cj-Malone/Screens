@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.service.quicksettings.TileService;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +27,7 @@ public class MainActivity extends Activity {
             = "com.android.launcher.action.INSTALL_SHORTCUT";
 
     private boolean isTabletLayout;
-    private boolean isPlugin;
+    private boolean isEditing;
 
     private ApplicationInfo package1;
     private ApplicationInfo package2;
@@ -36,8 +37,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        isPlugin = getIntent().getAction().
-                equals(Consts.ACTION_EDIT_SETTING);
+        isEditing = false;
         isTabletLayout = findViewById(R.id.quickPic1Button) == null;
 
         if (savedInstanceState != null) {
@@ -45,17 +45,7 @@ public class MainActivity extends Activity {
             package2 = savedInstanceState.getParcelable("package2");
         }
 
-        Bundle taskerBundle = getIntent().getBundleExtra(Consts.EXTRA_BUNDLE);
-        if (taskerBundle != null) {
-            PackageManager pm = getPackageManager();
-            try {
-                package1 = pm.getApplicationInfo(taskerBundle.getString(
-                        ShortcutActivity.INTENT_EXTRA_PACKAGE_1), 0);
-                package2 = pm.getApplicationInfo(taskerBundle.getString(
-                        ShortcutActivity.INTENT_EXTRA_PACKAGE_2), 0);
-            } catch (PackageManager.NameNotFoundException ex) {
-            }
-        }
+        loadFromIntent(getIntent());
 
         if (isTabletLayout) {
             FragmentManager fragmentManager = getFragmentManager();
@@ -106,7 +96,7 @@ public class MainActivity extends Activity {
         final Button setFavButton = (Button) findViewById(R.id.setFavourite);
         final Button saveButton = (Button) findViewById(R.id.saveButton);
 
-        if (isPlugin) {
+        if (isEditing) {
             nameEditText.setVisibility(View.GONE);
             createShortcutButton.setVisibility(View.GONE);
             setFavButton.setVisibility(View.GONE);
@@ -183,14 +173,23 @@ public class MainActivity extends Activity {
                     return;
                 }
 
-                Bundle bundle = new Bundle();
-                bundle.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
-                bundle.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
+                if (getIntent().getAction().equals(TileService.ACTION_QS_TILE_PREFERENCES)) {
+                    SharedPreferences.Editor prefs = getSharedPreferences("prefs_tile",
+                            MODE_PRIVATE).edit();
+                    prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
+                    prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
+                    prefs.apply();
+                } else if (getIntent().getAction().equals(Consts.ACTION_EDIT_SETTING)) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
+                    bundle.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
 
-                Intent intent = new Intent();
-                intent.putExtra(Consts.EXTRA_BUNDLE, bundle);
+                    Intent intent = new Intent();
+                    intent.putExtra(Consts.EXTRA_BUNDLE, bundle);
 
-                setResult(RESULT_OK, intent);
+                    setResult(RESULT_OK, intent);
+                }
+
                 finish();
             }
         });
@@ -266,6 +265,40 @@ public class MainActivity extends Activity {
             iconImageView.setImageDrawable(applicationInfo.loadIcon(packageManager));
             nameTextView.setText(applicationInfo.loadLabel(packageManager));
             packageNameTextView.setText(applicationInfo.packageName);
+        }
+    }
+
+    public void loadFromIntent(Intent intent) {
+        if (intent.getAction().equals(TileService.ACTION_QS_TILE_PREFERENCES)) {
+            isEditing = true;
+
+            PackageManager pm = getPackageManager();
+            try {
+                SharedPreferences prefs = getSharedPreferences("prefs_tile", MODE_PRIVATE);
+                String pkg1 = prefs.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, null);
+                String pkg2 = prefs.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, null);
+
+                if (pkg1 != null && !pkg1.isEmpty()) {
+                    package1 = pm.getApplicationInfo(pkg1, 0);
+                }
+                if (pkg2 != null && !pkg2.isEmpty()) {
+                    package2 = pm.getApplicationInfo(pkg2, 0);
+                }
+            } catch (PackageManager.NameNotFoundException ex) {
+            }
+        } else if (intent.getAction().equals(Consts.ACTION_EDIT_SETTING)) {
+            isEditing = true;
+            Bundle taskerBundle = intent.getBundleExtra(Consts.EXTRA_BUNDLE);
+            if (taskerBundle != null) {
+                PackageManager pm = getPackageManager();
+                try {
+                    package1 = pm.getApplicationInfo(taskerBundle.getString(
+                            ShortcutActivity.INTENT_EXTRA_PACKAGE_1), 0);
+                    package2 = pm.getApplicationInfo(taskerBundle.getString(
+                            ShortcutActivity.INTENT_EXTRA_PACKAGE_2), 0);
+                } catch (PackageManager.NameNotFoundException ex) {
+                }
+            }
         }
     }
 }

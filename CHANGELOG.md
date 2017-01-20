@@ -2,6 +2,7 @@
 
 ### Added
  - Japanese translation
+ - Can edit quick settings tile
 
 ### Changed
  - Quick settings icon

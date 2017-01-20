@@ -76,9 +76,12 @@ public class ShortcutActivity extends Activity {
         Intent secondaryIntent;
 
         String pkg1 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_1);
-        String pkg2 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_1);
+        String pkg2 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_2);
 
         if (pkg1 == null || pkg2 == null || pkg1.isEmpty() || pkg2.isEmpty()) {
+            primaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
+            secondaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
+        } else {
             primaryIntent = getPackageManager().getLaunchIntentForPackage(pkg1);
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -86,9 +89,6 @@ public class ShortcutActivity extends Activity {
             secondaryIntent = getPackageManager().getLaunchIntentForPackage(pkg2);
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        } else {
-            primaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
-            secondaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
         }
 
         startActivities(new Intent[]{secondaryIntent, primaryIntent});
