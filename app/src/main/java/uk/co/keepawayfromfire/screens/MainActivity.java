@@ -148,6 +148,8 @@ public class MainActivity extends Activity {
 
                 SharedPreferences.Editor prefs = getSharedPreferences("prefs_tile", MODE_PRIVATE)
                         .edit();
+                prefs.putString(ShortcutActivity.INTENT_TYPE,
+                        ShortcutActivity.INTENT_TYPE_PACKAGES);
                 prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
                 prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
                 prefs.apply();
@@ -176,11 +178,15 @@ public class MainActivity extends Activity {
                 if (getIntent().getAction().equals(TileService.ACTION_QS_TILE_PREFERENCES)) {
                     SharedPreferences.Editor prefs = getSharedPreferences("prefs_tile",
                             MODE_PRIVATE).edit();
+                    prefs.putString(ShortcutActivity.INTENT_TYPE,
+                            ShortcutActivity.INTENT_TYPE_PACKAGES);
                     prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
                     prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
                     prefs.apply();
                 } else if (getIntent().getAction().equals(Consts.ACTION_EDIT_SETTING)) {
                     Bundle bundle = new Bundle();
+                    bundle.putString(ShortcutActivity.INTENT_TYPE,
+                            ShortcutActivity.INTENT_TYPE_PACKAGES);
                     bundle.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
                     bundle.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
 
@@ -275,6 +281,12 @@ public class MainActivity extends Activity {
             PackageManager pm = getPackageManager();
             try {
                 SharedPreferences prefs = getSharedPreferences("prefs_tile", MODE_PRIVATE);
+
+                if (prefs.getString(ShortcutActivity.INTENT_TYPE,
+                        ShortcutActivity.INTENT_TYPE_PACKAGES)
+                        .equals(ShortcutActivity.INTENT_TYPE_INTENTS))
+                    return;
+
                 String pkg1 = prefs.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, null);
                 String pkg2 = prefs.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, null);
 
@@ -289,6 +301,11 @@ public class MainActivity extends Activity {
         } else if (intent.getAction().equals(Consts.ACTION_EDIT_SETTING)) {
             isEditing = true;
             Bundle taskerBundle = intent.getBundleExtra(Consts.EXTRA_BUNDLE);
+
+            if (taskerBundle.getString(ShortcutActivity.INTENT_TYPE)
+                    .equals(ShortcutActivity.INTENT_TYPE_INTENTS))
+                return;
+
             if (taskerBundle != null) {
                 PackageManager pm = getPackageManager();
                 try {

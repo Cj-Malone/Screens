@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 /**
  * Created by cj on 26/11/16.
- *
  * Shell for PackagePickerFragment on phones
  */
 public class PackagePickerActivity extends Activity {

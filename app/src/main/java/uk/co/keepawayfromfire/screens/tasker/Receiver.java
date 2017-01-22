@@ -19,10 +19,9 @@ public class Receiver extends BroadcastReceiver {
         if (bundle == null)
             return;
 
-        String pkg1 = bundle.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1);
-        String pkg2 = bundle.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2);
+        if (bundle.getString(ShortcutActivity.INTENT_TYPE)
+                .equals(ShortcutActivity.INTENT_TYPE_INTENTS)) {
 
-        if (pkg1 == null || pkg2 == null || pkg1.isEmpty() || pkg2.isEmpty()) {
             Intent intent1 = bundle.getParcelable(ShortcutActivity.INTENT_EXTRA_1);
             Intent intent2 = bundle.getParcelable(ShortcutActivity.INTENT_EXTRA_2);
 
@@ -30,7 +29,14 @@ public class Receiver extends BroadcastReceiver {
                 return;
 
             context.startActivity(ShortcutActivity.createShortcutIntent(context, intent1, intent2));
-        } else
+        } else {
+            String pkg1 = bundle.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1);
+            String pkg2 = bundle.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2);
+
+            if (pkg1 == null || pkg2 == null || pkg1.isEmpty() || pkg2.isEmpty())
+                return;
+
             context.startActivity(ShortcutActivity.createShortcutIntent(context, pkg1, pkg2));
+        }
     }
 }

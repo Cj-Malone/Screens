@@ -18,6 +18,13 @@ public class FavTile extends TileService {
             return;
 
         SharedPreferences prefs = getSharedPreferences("prefs_tile", MODE_PRIVATE);
+
+        String type = prefs.getString(ShortcutActivity.INTENT_TYPE,
+                ShortcutActivity.INTENT_TYPE_PACKAGES);
+
+        if (type.equals(ShortcutActivity.INTENT_TYPE_INTENTS))
+            return;
+
         String pkg1 = prefs.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, null);
         String pkg2 = prefs.getString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, null);
 

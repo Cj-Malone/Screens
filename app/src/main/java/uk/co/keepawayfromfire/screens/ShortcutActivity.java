@@ -16,6 +16,10 @@ public class ShortcutActivity extends Activity {
     public static final String INTENT_EXTRA_1 = "intent1";
     public static final String INTENT_EXTRA_2 = "intent2";
 
+    public static final String INTENT_TYPE = "version";
+    public static final String INTENT_TYPE_PACKAGES = "package";
+    public static final String INTENT_TYPE_INTENTS = "intent";
+
     public static Intent createShortcutIntent(Context context, String package1, String package2) {
         Intent shortcutIntent = new Intent(context, ShortcutActivity.class);
 
@@ -23,6 +27,8 @@ public class ShortcutActivity extends Activity {
 
         shortcutIntent.putExtra(INTENT_EXTRA_PACKAGE_1, package1);
         shortcutIntent.putExtra(INTENT_EXTRA_PACKAGE_2, package2);
+
+        shortcutIntent.putExtra(INTENT_TYPE, INTENT_TYPE_PACKAGES);
 
         return shortcutIntent;
     }
@@ -34,6 +40,8 @@ public class ShortcutActivity extends Activity {
 
         shortcutIntent.putExtra(INTENT_EXTRA_1, intent1);
         shortcutIntent.putExtra(INTENT_EXTRA_2, intent2);
+
+        shortcutIntent.putExtra(INTENT_TYPE, INTENT_TYPE_INTENTS);
 
         return shortcutIntent;
     }
@@ -47,7 +55,9 @@ public class ShortcutActivity extends Activity {
         } else {
             setContentView(R.layout.activity_shortcut);
 
-            Button accessibilityOptionsButton = (Button) findViewById(R.id.accessibilityOptionsButton);
+            Button accessibilityOptionsButton = (Button) findViewById(
+                    R.id.accessibilityOptionsButton);
+
             accessibilityOptionsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -75,13 +85,13 @@ public class ShortcutActivity extends Activity {
         Intent primaryIntent;
         Intent secondaryIntent;
 
-        String pkg1 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_1);
-        String pkg2 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_2);
-
-        if (pkg1 == null || pkg2 == null || pkg1.isEmpty() || pkg2.isEmpty()) {
+        if (getIntent().getStringExtra(INTENT_TYPE).equals(INTENT_TYPE_INTENTS)) {
             primaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
             secondaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
-        } else {
+        } else { //INTENT_TYPE_PACKAGES
+            String pkg1 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_1);
+            String pkg2 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_2);
+
             primaryIntent = getPackageManager().getLaunchIntentForPackage(pkg1);
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
