@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Screens</string>
+    <string name="app_name" translatable="false">Screens</string>
     <string name="launch_splitscreen_howto">Please launch split screen mode by long pressing the recents button, or enable Screens in the accessibility options.</string>
     <string name="create_shortcut">Create Shortcut</string>
     <string name="create_tile">Set Favorite</string>
@@ -19,4 +19,5 @@
     <string name="store_summary">Manage split screen sessions</string>
     <string name="store_description">Screens allows you to quickly enter split screen mode from launcher shortcuts and a Quick Settings tile.</string>
     <string name="translators">Translators</string>
+    <string name="not_installed">Package no longer installed</string>
 </resources>

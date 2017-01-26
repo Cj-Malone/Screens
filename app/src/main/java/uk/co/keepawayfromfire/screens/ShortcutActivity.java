@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class ShortcutActivity extends Activity {
 
@@ -19,6 +20,9 @@ public class ShortcutActivity extends Activity {
     public static final String INTENT_TYPE = "version";
     public static final String INTENT_TYPE_PACKAGES = "package";
     public static final String INTENT_TYPE_INTENTS = "intent";
+
+    public Intent primaryIntent;
+    public Intent secondaryIntent;
 
     public static Intent createShortcutIntent(Context context, String package1, String package2) {
         Intent shortcutIntent = new Intent(context, ShortcutActivity.class);
@@ -49,6 +53,8 @@ public class ShortcutActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        loadIntent(getIntent());
 
         if (isInMultiWindowMode()) {
             thunderbirdsAreGo();
@@ -81,27 +87,50 @@ public class ShortcutActivity extends Activity {
         super.onResume();
     }
 
-    public void thunderbirdsAreGo() {
-        Intent primaryIntent;
-        Intent secondaryIntent;
+    public void loadIntent(Intent intent) {
+        if (intent.getStringExtra(INTENT_TYPE).equals(INTENT_TYPE_INTENTS)) {
+            primaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
+            secondaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
 
-        if (getIntent().getStringExtra(INTENT_TYPE).equals(INTENT_TYPE_INTENTS)) {
-            primaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
-            secondaryIntent = getIntent().getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
+            if (primaryIntent == null || secondaryIntent == null) {
+                goHome();
+                return;
+            }
         } else { //INTENT_TYPE_PACKAGES
-            String pkg1 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_1);
-            String pkg2 = getIntent().getStringExtra(INTENT_EXTRA_PACKAGE_2);
+            String pkg1 = intent.getStringExtra(INTENT_EXTRA_PACKAGE_1);
+            String pkg2 = intent.getStringExtra(INTENT_EXTRA_PACKAGE_2);
 
             primaryIntent = getPackageManager().getLaunchIntentForPackage(pkg1);
+
+            if (primaryIntent == null) {
+                goHome();
+                return;
+            }
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             secondaryIntent = getPackageManager().getLaunchIntentForPackage(pkg2);
+
+            if (secondaryIntent == null) {
+                goHome();
+                return;
+            }
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
+    }
+
+    public void thunderbirdsAreGo() {
+        if (primaryIntent == null || secondaryIntent == null)
+            goHome();
 
         startActivities(new Intent[]{secondaryIntent, primaryIntent});
+        finish();
+    }
+
+    public void goHome() {
+        Toast.makeText(this, R.string.not_installed, Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

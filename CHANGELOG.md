@@ -1,11 +1,13 @@
 # Change Log
 
+# 5.1
 ### Added
  - Japanese translation
  - Can edit quick settings tile
 
 ### Changed
  - Quick settings icon
+ - Fixed crash when an app has beed uninstalled
 
 # 5 - 2017-01-09
 ### Added
@@ -34,4 +36,3 @@
  - Explicitly use Light.DarkActionBar theme
 
 ## 1 - 2016-11-24
-)

@@ -275,6 +275,11 @@ public class MainActivity extends Activity {
     }
 
     public void loadFromIntent(Intent intent) {
+        if(intent == null)
+            return;
+        if(intent.getAction() == null)
+            return;
+
         if (intent.getAction().equals(TileService.ACTION_QS_TILE_PREFERENCES)) {
             isEditing = true;
 
