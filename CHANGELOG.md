@@ -1,6 +1,6 @@
 # Change Log
 
-# 5.1
+# 5.1 - 2017-01-26
 ### Added
  - Japanese translation
  - Can edit quick settings tile
@@ -8,6 +8,7 @@
 ### Changed
  - Quick settings icon
  - Fixed crash when an app has beed uninstalled
+ - Moved to semantic versioning
 
 # 5 - 2017-01-09
 ### Added
