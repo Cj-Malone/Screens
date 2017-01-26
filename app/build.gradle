@@ -13,4 +13,8 @@ android {
         resValue("string", "versionName", versionName)
         resValue("string", "version", "Version " + versionName)
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
