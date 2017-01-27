@@ -93,15 +93,8 @@ public class ShortcutActivity extends Activity {
             return;
         }
 
-        if (intent.getStringExtra(INTENT_TYPE).equals(INTENT_TYPE_INTENTS)) {
-            primaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
-            secondaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
-
-            if (primaryIntent == null || secondaryIntent == null) {
-                goHome();
-                return;
-            }
-        } else { //INTENT_TYPE_PACKAGES
+        if (intent.getStringExtra(INTENT_TYPE) == null || intent.getStringExtra(INTENT_TYPE)
+                .equals(INTENT_TYPE_PACKAGES)) {
             String pkg1 = intent.getStringExtra(INTENT_EXTRA_PACKAGE_1);
             String pkg2 = intent.getStringExtra(INTENT_EXTRA_PACKAGE_2);
 
@@ -117,6 +110,14 @@ public class ShortcutActivity extends Activity {
 
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } else if (intent.getStringExtra(INTENT_TYPE).equals(INTENT_TYPE_INTENTS)) {
+            primaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
+            secondaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
+
+            if (primaryIntent == null || secondaryIntent == null) {
+                goHome();
+                return;
+            }
         }
     }
 
