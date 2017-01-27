@@ -1,5 +1,10 @@
 # Change Log
 
+# 5.1.1
+### Changed
+ - Fixed NPE
+ - Blacklist some packages
+
 # 5.1 - 2017-01-26
 ### Added
  - Japanese translation

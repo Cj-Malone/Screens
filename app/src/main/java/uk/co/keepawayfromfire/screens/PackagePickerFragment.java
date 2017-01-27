@@ -10,12 +10,18 @@ import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PackagePickerFragment extends ListFragment {
 
     public static final String INTENT_EXTRA_PACKAGE = "pkg";
+    public static Set<String> BLACKLISTED_PACKAGES = new HashSet<>(Arrays.asList(
+            "com.actionlauncher.playstore" //Action launcher dosen't even show this
+    ));
 
     AppInfoChangeListener listener;
     private boolean isTabletLayout;
@@ -32,10 +38,13 @@ public class PackagePickerFragment extends ListFragment {
                 PackageManager.GET_META_DATA);
 
         for (PackageInfo packageInfo : allPackages) {
-            if (packageManager.getLaunchIntentForPackage(packageInfo.packageName) != null) {
-                // Only add packages that would show up in the launcher
-                acceptablePackages.add(packageInfo.applicationInfo);
-            }
+            // Only add packages that would show up in the launcher
+            if (packageManager.getLaunchIntentForPackage(packageInfo.packageName) == null)
+                continue;
+            if (BLACKLISTED_PACKAGES.contains(packageInfo.packageName))
+                continue;
+
+            acceptablePackages.add(packageInfo.applicationInfo);
         }
 
         Collections.sort(acceptablePackages, new ApplicationInfoSorter(packageManager));
