@@ -88,6 +88,11 @@ public class ShortcutActivity extends Activity {
     }
 
     public void loadIntent(Intent intent) {
+        if (intent == null) {
+            goHome();
+            return;
+        }
+
         if (intent.getStringExtra(INTENT_TYPE).equals(INTENT_TYPE_INTENTS)) {
             primaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
             secondaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
@@ -101,28 +106,25 @@ public class ShortcutActivity extends Activity {
             String pkg2 = intent.getStringExtra(INTENT_EXTRA_PACKAGE_2);
 
             primaryIntent = getPackageManager().getLaunchIntentForPackage(pkg1);
+            secondaryIntent = getPackageManager().getLaunchIntentForPackage(pkg2);
 
-            if (primaryIntent == null) {
+            if (primaryIntent == null || secondaryIntent == null) {
                 goHome();
                 return;
             }
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            secondaryIntent = getPackageManager().getLaunchIntentForPackage(pkg2);
-
-            if (secondaryIntent == null) {
-                goHome();
-                return;
-            }
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
 
     public void thunderbirdsAreGo() {
-        if (primaryIntent == null || secondaryIntent == null)
+        if (primaryIntent == null || secondaryIntent == null) {
             goHome();
+            return;
+        }
 
         startActivities(new Intent[]{secondaryIntent, primaryIntent});
         finish();

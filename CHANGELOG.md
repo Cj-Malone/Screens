@@ -7,7 +7,7 @@
 
 ### Changed
  - Quick settings icon
- - Fixed crash when an app has beed uninstalled
+ - Fixed crash when an app has been uninstalled
  - Moved to semantic versioning
 
 # 5 - 2017-01-09
