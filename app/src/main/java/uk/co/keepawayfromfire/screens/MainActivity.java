@@ -93,13 +93,11 @@ public class MainActivity extends Activity {
 
         final EditText nameEditText = (EditText) findViewById(R.id.nameEditText);
         final Button createShortcutButton = (Button) findViewById(R.id.createShortcutButton);
-        final Button setFavButton = (Button) findViewById(R.id.setFavourite);
         final Button saveButton = (Button) findViewById(R.id.saveButton);
 
         if (isEditing) {
             nameEditText.setVisibility(View.GONE);
             createShortcutButton.setVisibility(View.GONE);
-            setFavButton.setVisibility(View.GONE);
             saveButton.setVisibility(View.VISIBLE);
         }
 
@@ -134,35 +132,6 @@ public class MainActivity extends Activity {
                 launcherIntent.addCategory(Intent.CATEGORY_HOME);
 
                 startActivity(launcherIntent);
-            }
-        });
-
-        setFavButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (package1 == null || package2 == null) {
-                    Toast.makeText(view.getContext(), R.string.select_packages, Toast.LENGTH_SHORT)
-                            .show();
-                    return;
-                }
-
-                SharedPreferences.Editor prefs = getSharedPreferences("prefs_tile", MODE_PRIVATE)
-                        .edit();
-                prefs.putString(ShortcutActivity.INTENT_TYPE,
-                        ShortcutActivity.INTENT_TYPE_PACKAGES);
-                prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
-                prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
-                prefs.apply();
-
-                // Enable the tile
-                PackageManager pm = getPackageManager();
-                pm.setComponentEnabledSetting(new ComponentName(view.getContext(), FavTile.class),
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                        PackageManager.DONT_KILL_APP);
-
-                Toast.makeText(view.getContext(),
-                        String.format(getString(R.string.quicksettings_added),
-                                nameEditText.getText().toString()), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -206,6 +175,10 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        if (isEditing)
+            menu.removeItem(R.id.setFavourite);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -214,6 +187,9 @@ public class MainActivity extends Activity {
         if (item.getItemId() == R.id.about_menu) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.setFavourite) {
+            setFav();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -275,9 +251,9 @@ public class MainActivity extends Activity {
     }
 
     public void loadFromIntent(Intent intent) {
-        if(intent == null)
+        if (intent == null)
             return;
-        if(intent.getAction() == null)
+        if (intent.getAction() == null)
             return;
 
         if (intent.getAction().equals(TileService.ACTION_QS_TILE_PREFERENCES)) {
@@ -322,5 +298,30 @@ public class MainActivity extends Activity {
                 }
             }
         }
+    }
+
+    public void setFav() {
+        if (package1 == null || package2 == null) {
+            Toast.makeText(this, R.string.select_packages, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        SharedPreferences.Editor prefs = getSharedPreferences("prefs_tile", MODE_PRIVATE)
+                .edit();
+        prefs.putString(ShortcutActivity.INTENT_TYPE,
+                ShortcutActivity.INTENT_TYPE_PACKAGES);
+        prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_1, package1.packageName);
+        prefs.putString(ShortcutActivity.INTENT_EXTRA_PACKAGE_2, package2.packageName);
+        prefs.apply();
+
+        // Enable the tile
+        PackageManager pm = getPackageManager();
+        pm.setComponentEnabledSetting(new ComponentName(this, FavTile.class),
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+
+        Toast.makeText(this, String.format(getString(R.string.quicksettings_added),
+                ((EditText) findViewById(R.id.nameEditText)).getText().toString()),
+                Toast.LENGTH_SHORT).show();
     }
 }

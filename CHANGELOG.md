@@ -1,6 +1,10 @@
 # Change Log
 
-# 5.1.1
+# 5.1.2
+### Changed
+ - Move favourite to action bar star
+
+# 5.1.1 - 2017-01-27
 ### Changed
  - Fixed NPE
  - Blacklist some packages

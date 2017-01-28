@@ -68,14 +68,6 @@
         android:text="@string/create_shortcut" />
 
     <Button
-        android:id="@+id/setFavourite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/createShortcutButton"
-        android:text="@string/create_tile" />
-
-    <Button
         android:id="@+id/saveButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
