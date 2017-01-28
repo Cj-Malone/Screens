@@ -128,7 +128,7 @@ public class ShortcutActivity extends Activity {
         }
 
         startActivities(new Intent[]{secondaryIntent, primaryIntent});
-        finish();
+        finishAndRemoveTask();
     }
 
     public void goHome() {
