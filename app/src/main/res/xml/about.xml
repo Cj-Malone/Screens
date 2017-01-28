@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/app_name">
-        <Preference android:title="@string/versionName" />
-    </PreferenceCategory>
-    <PreferenceCategory android:title="@string/links">
-        <Preference android:title="Keep Away From Fire">
+        <Preference android:title="@string/versionName">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="http://keepawayfromfire.co.uk/screens.html" />
         </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/links">
         <Preference android:title="@string/google_play">
             <intent
                 android:action="android.intent.action.VIEW"
