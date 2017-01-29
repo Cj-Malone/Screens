@@ -113,8 +113,7 @@ public class MainActivity extends Activity {
                 Intent installIntent = new Intent();
                 installIntent.setAction(ACTION_INSTALL_SHORTCUT);
 
-                installIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME,
-                        nameEditText.getText().toString());
+                installIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getName());
                 installIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
                         Intent.ShortcutIconResource.fromContext(view.getContext(),
                                 R.drawable.logo));
@@ -320,8 +319,23 @@ public class MainActivity extends Activity {
                 PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
 
-        Toast.makeText(this, String.format(getString(R.string.quicksettings_added),
-                ((EditText) findViewById(R.id.nameEditText)).getText().toString()),
+        Toast.makeText(this, String.format(getString(R.string.quicksettings_added), getName()),
                 Toast.LENGTH_SHORT).show();
+    }
+
+    public String getName() {
+        EditText nameTextEdit = (EditText) findViewById(R.id.nameEditText);
+        if (!nameTextEdit.getText().toString().isEmpty())
+            return nameTextEdit.getText().toString();
+
+        if (package1 == null || package2 == null)
+            return "";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(package1.loadLabel(getPackageManager()));
+        sb.append(" + ");
+        sb.append(package2.loadLabel(getPackageManager()));
+
+        return sb.toString();
     }
 }
