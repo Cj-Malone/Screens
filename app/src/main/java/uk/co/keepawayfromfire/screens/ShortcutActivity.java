@@ -107,9 +107,11 @@ public class ShortcutActivity extends Activity {
             }
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             primaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            primaryIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
 
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_LAUNCH_ADJACENT);
             secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            secondaryIntent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         } else if (intent.getStringExtra(INTENT_TYPE).equals(INTENT_TYPE_INTENTS)) {
             primaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_1);
             secondaryIntent = intent.getParcelableExtra(ShortcutActivity.INTENT_EXTRA_2);
