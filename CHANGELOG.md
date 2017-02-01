@@ -3,6 +3,7 @@
 # 5.1.2
 ### Changed
  - Move favourite to action bar star
+ - Fix Tasker NPE crash
 
 # 5.1.1 - 2017-01-27
 ### Changed

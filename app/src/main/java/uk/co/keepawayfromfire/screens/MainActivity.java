@@ -282,7 +282,11 @@ public class MainActivity extends Activity {
             isEditing = true;
             Bundle taskerBundle = intent.getBundleExtra(Consts.EXTRA_BUNDLE);
 
-            if (taskerBundle.getString(ShortcutActivity.INTENT_TYPE)
+            if (taskerBundle == null)
+                return;
+
+            if (taskerBundle.getString(ShortcutActivity.INTENT_TYPE,
+                    ShortcutActivity.INTENT_TYPE_PACKAGES)
                     .equals(ShortcutActivity.INTENT_TYPE_INTENTS))
                 return;
 
