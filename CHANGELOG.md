@@ -1,6 +1,6 @@
 # Change Log
 
-# 5.1.2
+# 5.1.2 - 2017-01-01
 ### Changed
  - Move favourite to action bar star
  - Fix Tasker NPE crash
