@@ -20,6 +20,7 @@ public class ShortcutActivity extends Activity {
     public static final String INTENT_TYPE = "version";
     public static final String INTENT_TYPE_PACKAGES = "package";
     public static final String INTENT_TYPE_INTENTS = "intent";
+    public static final String INTENT_TYPE_INTENTS_STRING = "intent_string";
 
     public Intent primaryIntent;
     public Intent secondaryIntent;

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.net.URISyntaxException;
+
 import uk.co.keepawayfromfire.screens.ShortcutActivity;
 
 /**
@@ -24,6 +26,22 @@ public class Receiver extends BroadcastReceiver {
 
             Intent intent1 = bundle.getParcelable(ShortcutActivity.INTENT_EXTRA_1);
             Intent intent2 = bundle.getParcelable(ShortcutActivity.INTENT_EXTRA_2);
+
+            if (intent1 == null || intent2 == null)
+                return;
+
+            context.startActivity(ShortcutActivity.createShortcutIntent(context, intent1, intent2));
+        } else if (bundle.getString(ShortcutActivity.INTENT_TYPE)
+                .equals(ShortcutActivity.INTENT_TYPE_INTENTS_STRING)) {
+
+            Intent intent1;
+            Intent intent2;
+            try {
+                intent1 = Intent.parseUri(bundle.getString(ShortcutActivity.INTENT_EXTRA_1), 0);
+                intent2 = Intent.parseUri(bundle.getString(ShortcutActivity.INTENT_EXTRA_2), 0);
+            } catch (URISyntaxException e) {
+                return;
+            }
 
             if (intent1 == null || intent2 == null)
                 return;
