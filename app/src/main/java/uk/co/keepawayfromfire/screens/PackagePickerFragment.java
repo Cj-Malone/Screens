@@ -22,6 +22,11 @@ public class PackagePickerFragment extends ListFragment {
     public static Set<String> BLACKLISTED_PACKAGES = new HashSet<>(Arrays.asList(
             "uk.co.keepawayfromfire.screens", // Why would you want this?
             "com.supercell.clashofclans", // Dosen't work in multi window
+            "com.motorola.cameraone", // Dosen't work in multi window
+            "com.bluecore.Determination", // Dosen't work in multi window
+            "com.motorola.genie", // Dosen't work in multi window
+            "com.tinyrebel.doctorwholegacy", // Dosen't work in multi window
+            "air.au.com.metro.DumbWaysToDie2", // Dosen't work in multi window
             "com.actionlauncher.playstore" // Action launcher dosen't even show this
     ));
 
