@@ -20,8 +20,9 @@ public class PackagePickerFragment extends ListFragment {
 
     public static final String INTENT_EXTRA_PACKAGE = "pkg";
     public static Set<String> BLACKLISTED_PACKAGES = new HashSet<>(Arrays.asList(
-            "uk.co.keepawayfromfire.screens", //Why would you want this?
-            "com.actionlauncher.playstore" //Action launcher dosen't even show this
+            "uk.co.keepawayfromfire.screens", // Why would you want this?
+            "com.supercell.clashofclans", // Dosen't work in multi window
+            "com.actionlauncher.playstore" // Action launcher dosen't even show this
     ));
 
     AppInfoChangeListener listener;
