@@ -28,6 +28,8 @@ public class ShortcutActivity extends Activity {
     public static Intent createShortcutIntent(Context context, String package1, String package2) {
         Intent shortcutIntent = new Intent(context, ShortcutActivity.class);
 
+        shortcutIntent.setAction(Intent.ACTION_DEFAULT);
+
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 
         shortcutIntent.putExtra(INTENT_EXTRA_PACKAGE_1, package1);
@@ -40,6 +42,8 @@ public class ShortcutActivity extends Activity {
 
     public static Intent createShortcutIntent(Context context, Intent intent1, Intent intent2) {
         Intent shortcutIntent = new Intent(context, ShortcutActivity.class);
+
+        shortcutIntent.setAction(Intent.ACTION_DEFAULT);
 
         shortcutIntent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 

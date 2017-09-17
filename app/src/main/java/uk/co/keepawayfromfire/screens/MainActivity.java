@@ -7,6 +7,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ShortcutInfo;
+import android.content.pm.ShortcutManager;
+import android.graphics.drawable.Icon;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.service.quicksettings.TileService;
@@ -18,6 +22,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import uk.co.keepawayfromfire.screens.tasker.Consts;
 
@@ -110,20 +116,43 @@ public class MainActivity extends Activity {
                     return;
                 }
 
-                Intent installIntent = new Intent();
-                installIntent.setAction(ACTION_INSTALL_SHORTCUT);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
+                    if (shortcutManager == null) {
+                        Toast.makeText(view.getContext(), "Error", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                installIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getName());
-                installIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                        Intent.ShortcutIconResource.fromContext(view.getContext(),
-                                R.drawable.logo));
-                installIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT,
-                        ShortcutActivity.createShortcutIntent(view.getContext(),
-                                package1.packageName,
-                                package2.packageName
-                        ));
+                    ShortcutInfo shortcutInfo =
+                            new ShortcutInfo.Builder(view.getContext(), getName())
+                                    .setShortLabel(getName())
+                                    .setIcon(Icon.createWithResource(view.getContext(),
+                                            R.mipmap.ic_launcher))
+                                    .setIntent(ShortcutActivity.createShortcutIntent(view.getContext(),
+                                            package1.packageName,
+                                            package2.packageName
+                                    ))
+                                    .build();
 
-                view.getContext().sendBroadcast(installIntent);
+                    List<ShortcutInfo> shortcuts = shortcutManager.getDynamicShortcuts();
+                    shortcuts.add(shortcutInfo);
+
+                    shortcutManager.setDynamicShortcuts(shortcuts);
+                } else {
+                    Intent installIntent = new Intent();
+                    installIntent.setAction(ACTION_INSTALL_SHORTCUT);
+
+                    installIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getName());
+                    installIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                            Icon.createWithResource(view.getContext(), R.mipmap.ic_launcher));
+                    installIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT,
+                            ShortcutActivity.createShortcutIntent(view.getContext(),
+                                    package1.packageName,
+                                    package2.packageName
+                            ));
+
+                    view.getContext().sendBroadcast(installIntent);
+                }
 
                 // Go home
                 Intent launcherIntent = new Intent();
