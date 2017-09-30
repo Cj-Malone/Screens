@@ -146,7 +146,8 @@ public class MainActivity extends Activity {
 
                     installIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getName());
                     installIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                            Icon.createWithResource(view.getContext(), R.mipmap.ic_launcher));
+                            Intent.ShortcutIconResource.fromContext(view.getContext(),
+                                    R.mipmap.ic_launcher));
                     installIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT,
                             ShortcutActivity.createShortcutIntent(view.getContext(),
                                     package1.packageName,
