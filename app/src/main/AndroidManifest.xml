@@ -28,12 +28,7 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShortcutActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.CREATE_SHORTCUT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".ShortcutActivity" />
         <activity android:name=".PackagePickerActivity" />
         <activity
             android:name=".AboutActivity"
