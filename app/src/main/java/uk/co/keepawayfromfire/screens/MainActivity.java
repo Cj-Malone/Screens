@@ -128,7 +128,8 @@ public class MainActivity extends Activity {
                                     .setShortLabel(getName())
                                     .setIcon(Icon.createWithResource(view.getContext(),
                                             R.mipmap.ic_launcher))
-                                    .setIntent(ShortcutActivity.createShortcutIntent(view.getContext(),
+                                    .setIntent(ShortcutActivity.createShortcutIntent(
+                                            view.getContext(),
                                             package1.packageName,
                                             package2.packageName
                                     ))
@@ -138,6 +139,7 @@ public class MainActivity extends Activity {
                     shortcuts.add(shortcutInfo);
 
                     shortcutManager.setDynamicShortcuts(shortcuts);
+                    //shortcutManager.requestPinShortcut(shortcutInfo, null);
                 } else {
                     Intent installIntent = new Intent();
                     installIntent.setAction(ACTION_INSTALL_SHORTCUT);
