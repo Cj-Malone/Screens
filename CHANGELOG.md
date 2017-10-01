@@ -3,6 +3,9 @@
 # 6
 ### Added
  - Adaptive Icon
+ - Android 8 support
+###
+ - Dark theme (DeviceDefault)
 
 # 5.1.2 - 2017-01-01
 ### Changed

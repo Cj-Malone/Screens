@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
         applicationId "uk.co.keepawayfromfire.screens"
         minSdkVersion 24
         targetSdkVersion 26
-        versionCode 8
-        versionName "5.1.2"
+        versionCode 9
+        versionName "6.0.0"
         resValue("string", "versionName", versionName)
         resValue("string", "version", "Version " + versionName)
     }
