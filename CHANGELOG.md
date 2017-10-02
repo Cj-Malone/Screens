@@ -4,8 +4,9 @@
 ### Added
  - Adaptive Icon
  - Android 8 support
-###
+### Changed
  - Dark theme (DeviceDefault)
+ - Fixed rotation bug
 
 # 5.1.2 - 2017-01-01
 ### Changed
