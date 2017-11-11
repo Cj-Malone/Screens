@@ -1,6 +1,10 @@
 # Change Log
 
-# 6
+# 6.0.1
+### Changed
+ - Slightly changed accessibility services wording
+
+# 6.0.0
 ### Added
  - Adaptive Icon
  - Android 8 support
