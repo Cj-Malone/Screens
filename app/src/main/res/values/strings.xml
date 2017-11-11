@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Screens</string>
-    <string name="launch_splitscreen_howto">Please launch split screen mode by long pressing the recents button, or enable Screens in the accessibility options.</string>
+    <string name="launch_splitscreen_howto">Please launch split screen mode by long pressing the recents button, or enable Screens in accessibility options.</string>
     <string name="create_shortcut">Create Shortcut</string>
     <string name="create_tile">Set Favorite</string>
     <string name="default_shortcut_name">Shortcut name</string>
     <string name="accessibility_options">Accessibility Options</string>
-    <string name="accessibility_explanation">The is required to automatically enter multi window mode.</string>
+    <string name="accessibility_explanation">This is required to automatically enter multi window mode, if you chose to not enable this you will be prompted to manually enter multi window mode.</string>
     <string name="title_activity_about">About</string>
     <string name="links">Links</string>
     <string name="google_play" translatable="false">Google Play</string>
@@ -17,7 +17,7 @@
     <string name="save">Save</string>
     <string name="store_title">Screens - Multi Window Manager</string>
     <string name="store_summary">Manage split screen sessions</string>
-    <string name="store_description">Screens allows you to quickly enter split screen mode from launcher shortcuts and a Quick Settings tile.</string>
+    <string name="store_description">Screens allows you to quickly enter splitscreen mode with pre selected apps. It creates shortcuts that can be used from any launcher. This might be good for productivity or having SeriesGuide and Kore at the same time.\n\nThis app uses Accessibility services. Accessibility services are required to enable Multi window automatically, if you don't want to provide this open source app with the permission you will need to manually hold the recents button when prompted.</string>
     <string name="translators">Translators</string>
     <string name="not_installed">Package no longer installed</string>
 </resources>
