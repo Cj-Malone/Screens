@@ -9,3 +9,4 @@
 .idea
 /app/*.apk
 /app/build
+/app/release
