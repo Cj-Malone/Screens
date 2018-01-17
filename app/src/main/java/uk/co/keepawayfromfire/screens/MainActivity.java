@@ -77,8 +77,8 @@ public class MainActivity extends Activity {
                 }
             });
         } else { //"phone"
-            final Button quickPic1Button = (Button) findViewById(R.id.quickPic1Button);
-            final Button quickPic2Button = (Button) findViewById(R.id.quickPic2Button);
+            final Button quickPic1Button = findViewById(R.id.quickPic1Button);
+            final Button quickPic2Button = findViewById(R.id.quickPic2Button);
 
             quickPic1Button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,9 +97,9 @@ public class MainActivity extends Activity {
             });
         }
 
-        final EditText nameEditText = (EditText) findViewById(R.id.nameEditText);
-        final Button createShortcutButton = (Button) findViewById(R.id.createShortcutButton);
-        final Button saveButton = (Button) findViewById(R.id.saveButton);
+        final EditText nameEditText = findViewById(R.id.nameEditText);
+        final Button createShortcutButton = findViewById(R.id.createShortcutButton);
+        final Button saveButton = findViewById(R.id.saveButton);
 
         if (isEditing) {
             nameEditText.setVisibility(View.GONE);
@@ -118,7 +118,8 @@ public class MainActivity extends Activity {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
-                    if (shortcutManager == null) {
+                    if (shortcutManager == null ||
+                            !shortcutManager.isRequestPinShortcutSupported()) {
                         Toast.makeText(view.getContext(), "Error", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -264,9 +265,9 @@ public class MainActivity extends Activity {
     }
 
     private void updatePackageView(ApplicationInfo applicationInfo, View packageView) {
-        ImageView iconImageView = (ImageView) packageView.findViewById(R.id.iconImageView);
-        TextView nameTextView = (TextView) packageView.findViewById(R.id.nameTextView);
-        TextView packageNameTextView = (TextView) packageView.findViewById(R.id.packageNameTextView);
+        ImageView iconImageView = packageView.findViewById(R.id.iconImageView);
+        TextView nameTextView = packageView.findViewById(R.id.nameTextView);
+        TextView packageNameTextView = packageView.findViewById(R.id.packageNameTextView);
 
         if (applicationInfo == null) {
             iconImageView.setImageDrawable(null);
@@ -360,7 +361,7 @@ public class MainActivity extends Activity {
     }
 
     public String getName() {
-        EditText nameTextEdit = (EditText) findViewById(R.id.nameEditText);
+        EditText nameTextEdit = findViewById(R.id.nameEditText);
         if (!nameTextEdit.getText().toString().isEmpty())
             return nameTextEdit.getText().toString();
 
