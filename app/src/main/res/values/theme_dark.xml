@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppDarkTheme" parent="android:Theme.DeviceDefault">
+        <item name="android:titleTextColor">#6DFA8B</item>
+        <item name="android:colorAccent">#6DFA8B</item>
+        <item name="android:statusBarColor">#333333</item>
+        <item name="android:colorPrimary">#333333</item>
+        <item name="android:navigationBarColor">#333333</item>
+    </style>
+</resources>
