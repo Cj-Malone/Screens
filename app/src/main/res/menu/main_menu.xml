@@ -5,8 +5,4 @@
         android:icon="@drawable/star"
         android:showAsAction="ifRoom"
         android:title="@string/create_tile" />
-    <item
-        android:id="@+id/about_menu"
-        android:showAsAction="ifRoom"
-        android:title="@string/title_activity_about" />
 </menu>
