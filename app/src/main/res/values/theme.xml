@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppLightTheme" parent="android:Theme.DeviceDefault.Light">
+    <style name="AppTheme" parent="android:Theme.DeviceDefault.Light.DarkActionBar">
         <item name="android:titleTextColor">#FA8B6D</item>
         <item name="android:colorAccent">#FA8B6D</item>
         <item name="android:statusBarColor">#CCCCCC</item>
